@@ -16,13 +16,10 @@ const resetButton = document.getElementById("reset");
 
 // Set defaults (before the game even begins)
 
-let alive = false;
-
+let alive = true;
 let points = 0;
-
+let guess;
 let randomNumber = Math.floor(Math.random() * 10) + 1;
-
-let guess = 0;
 
 // Create a function that will reassign random number; call this when a user gets a guess RIGHT
 
@@ -39,68 +36,66 @@ startButton.addEventListener("click", () => {
 
 function startGame() {
     alive = true;
-    getGuess();
+    points = 0;
+    newRandomNumber();
+    comArea.innerHTML = `<h3>Game started! Guess the number!</h3>`;
+    addEventListeners();
 }
 
-function getGuess() {
-        oneButton.addEventListener("click", () => {
-            guess = 1;
-            checkGuess();
-        });
-        twoButton.addEventListener("click", () => {
-            guess = 2;
-            checkGuess();
-        });
-        threeButton.addEventListener("click", () => {
-            guess = 3;
-            checkGuess();
-        });
-        fourButton.addEventListener("click", () => {
-            guess = 4;
-            checkGuess();
-        });
-        fiveButton.addEventListener("click", () => {
-            guess = 5;
-            checkGuess();
-        });
-        sixButton.addEventListener("click", () => {
-            guess = 6;
-            checkGuess();
-        });
-        sevenButton.addEventListener("click", () => {
-            guess = 7;
-            checkGuess();
-        });
-        eightButton.addEventListener("click", () => {
-            guess = 8;
-            checkGuess();
-        });
-        nineButton.addEventListener("click", () => {
-            guess = 9;
-            checkGuess();
-        });
-        tenButton.addEventListener("click", () => {
-            guess = 10;
-            checkGuess();
-        });
-    
-    function checkGuess() {
-        if (guess === randomNumber) {
-            points++;
-            comArea.innerHTML = `<h3>Correct! You currently have ${points} points! Guess again!</h3>`;
-            newRandomNumber();
-            getGuess();
-        } else {
-            comArea.innerHTML = `<h3>Game over! You scored  ${points} points! Reset to play again!</h3>`;
-        }
+function removeEventListeners() {
+    oneButton.removeEventListener("click", handleGuess);
+    twoButton.removeEventListener("click", handleGuess);
+    threeButton.removeEventListener("click", handleGuess);
+    fourButton.removeEventListener("click", handleGuess);
+    fiveButton.removeEventListener("click", handleGuess);
+    sixButton.removeEventListener("click", handleGuess);
+    sevenButton.removeEventListener("click", handleGuess);
+    eightButton.removeEventListener("click", handleGuess);
+    nineButton.removeEventListener("click", handleGuess);
+    tenButton.removeEventListener("click", handleGuess);
+}
+
+function addEventListeners() {
+    oneButton.addEventListener("click", handleGuess);
+    twoButton.addEventListener("click", handleGuess);
+    threeButton.addEventListener("click", handleGuess);
+    fourButton.addEventListener("click", handleGuess);
+    fiveButton.addEventListener("click", handleGuess);
+    sixButton.addEventListener("click", handleGuess);
+    sevenButton.addEventListener("click", handleGuess);
+    eightButton.addEventListener("click", handleGuess);
+    nineButton.addEventListener("click", handleGuess);
+    tenButton.addEventListener("click", handleGuess);
+}
+
+function handleGuess(event) {
+    guess = parseInt(event.target.textContent, 10); // Use textContent to get the button's number
+    if (isNaN(guess)) {
+        console.error("Invalid guess: ", event.target.textContent);
+        return;
+    }
+    checkGuess();
+    console.log("Guess: " + guess + " Number: " + randomNumber);
+}
+
+function checkGuess() {
+    if (guess === randomNumber) {
+        points++;
+        comArea.innerHTML = `<h3>Correct! ✅ You currently have ${points} points! Guess again!</h3>`;
+        newRandomNumber();
+    } else {
+        alive = false;
+        comArea.innerHTML = `<h3>Wrong! ❌ The number was ${randomNumber}. Your final score is ${points} points! Reset the game to start again!</h3>`;
+        removeEventListeners(); // Remove event listeners when the guess is incorrect
     }
 }
 
-
-// Write a function to reset the game
-
 function resetGame() {
-    window.location.reload();
+    alive = true;
+    points = 0;
+    newRandomNumber();
+    comArea.innerHTML = `<h3>Game reset! Guess the number!</h3>`;
+    addEventListeners();
 }
 
 resetButton.addEventListener("click", () => {
