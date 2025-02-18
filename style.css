@@ -47,6 +47,21 @@ h1 {
     margin-bottom: 2rem;
 }
 
+#easy:hover {
+    color: green;
+    font-weight: bold;
+}
+
+#medium:hover {
+    color: yellow;
+    font-weight: bold;
+}
+
+#hard:hover {
+    color: red;
+    font-weight: bold;
+}
+
 #number-buttons-wrapper {
     display: flex;
     justify-content: center;

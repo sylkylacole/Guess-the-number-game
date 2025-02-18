@@ -11,18 +11,22 @@
         <h1>Guess the Number</h1>
     </header>
     <main>
-        <div id="com-area">
-            <h3>Click to choose a difficulty!</h3>
+        <div class="hidden" id="com-area">
+            <h3>Click a number below to guess</h3>
+        </div>
+        <div id="number-buttons-wrapper">
+            <button type="button" name="one" id="one" class="number" value="1">1</button>
+            <button type="button" name="two" id="two" class="number" value="2">2</button>
+            <button type="button" name="three" id="three" class="number" value="3">3</button>
         </div>
         <div id="main-buttons-wrapper">
-            <button type="button" name="easy" id="easy" class="main-buttons">Easy</button>
-            <button type="button" name="medium" id="medium" class="main-buttons">Medium</button>
-            <button type="button" name="hard" id="hard" class="main-buttons">Hard</button>
+            <button type="button" name="start" id="start" class="main-buttons">Start</button>
+            <button type="button" name="home" id="home" class="main-buttons">Home</button>
         </div>
     </main>
     <footer>
         <h6>For more projects, visit my website <a href="https://www.sylkylacole.com" target="_blank" rel="noopener">here</a> or go to my <a href="https://www.github.com/sylkylacole" target="_blank" rel="noopener">Github</a></h6>
     </footer>
-    <script src="script.js" defer></script>
+    <script src="easy.js" defer></script>
 </body>
 </html>
