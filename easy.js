@@ -65,7 +65,7 @@ function checkGuess() {
         newRandomNumber();
     } else {
         alive = false;
-        comArea.innerHTML = `<h3>Wrong! ❌ The number was ${randomNumber}. Your final score is ${points} points! Press start to try again or home to go home!</h3>`;
+        comArea.innerHTML = `<h3>Wrong! ❌ The number was ${randomNumber}. Your final score is ${points} points! Press start to try again!</h3>`;
         removeEventListeners(); // Remove event listeners when the guess is incorrect
     }
 }
